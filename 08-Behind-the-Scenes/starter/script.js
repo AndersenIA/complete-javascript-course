@@ -82,6 +82,8 @@ const f = jonas.calcAge;
 //will show UNDEFINED error message^⏫
 */
 
+/*
+
 const jonas = {
   firstName: 'Jonas',
   year: 1991,
@@ -110,3 +112,57 @@ const jonas = {
 // DONT USE VAR
 // Dont use arrow funtion as a method.
 jonas.calcAge();
+*/
+
+/*
+
+const jessica1 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+function marryPerson(originalPerson, newLastName) {
+  originalPerson.lastName = newLastName;
+  return originalPerson;
+}
+
+const marriedJessica = marryPerson(jessica1, 'Davis');
+// const marriedJessica = jessica1;
+// marriedJessica.lastName = 'Davis';
+
+//Proof that the callstack only saves a REFERENCE to the object that is stored in the heap. When you're changing a part of an object (Property) that is being COPIED, like you can see here, even tho you're changing it in the NEW Jessica object, you're also changing it in the initial jessica object. This is because they're both just REFERENCING the same object in the HEAP
+// Same thing happens when you're doing it through a function.
+
+//How to do this
+// const marriedJessica = jessica;
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+//Using the {...jessica} will do what we're after. SHALLOW COPY
+const jessicaCopy = { ...jessica };
+
+jessicaCopy.lastName = 'Davis';
+
+// jessicaCopy.family.push('Mary');
+// jessicaCopy.family.push('John');
+
+// console.log('Before:', jessica);
+// console.log('After:', jessicaCopy);
+//The problem now is that we're actually pushing those names into BOTH of the arrays. Because an array is also an object, so we're back to both using the same object.
+
+//Deep clone⬇
+const jessicaClone = structuredClone(jessica);
+jessicaClone.family.push('Mary');
+jessicaClone.family.push('John');
+
+console.log('Original:', jessica);
+console.log('clone:', jessicaClone);
+
+//This copies EVERYTHING in the object, even other objects. Thats what we're after. This is a new JS function. So its not supported in all browsers.
+*/
