@@ -58,8 +58,183 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+// OR assignment operator.
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// Nullish assignment operator
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+//AND Assignment operator
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1);
+console.log(rest2);
+
+/*
+// Nullish coalescing operator
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+//Nullish: null and undefined. (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+*/
+/*
+console.log('--------- OR -----------');
+// Use ANY data type, return ANY datatype, short-circuiting
+console.log(3 || 'Jonas'); //If the first value is a "truthy" value, it will return that value.
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || '' || 'hello' || 23 || null);
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('--------- AND -----------');
+console.log(0 && 'Jonas'); // If the first value is a "Falsy" value, it will return that value.
+console.log(7 && 'Jonas');
+
+console.log('hello' && 23 && null && 'Jonas');
+
+//Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+*/
+/*
+///////////////////////////////////////////////////////////////////
+// Rest operator
+
+// Destructuring
+
+// SPREAD, because on right side of =
+const arr = [1, 2, ...[3, 4]];
+
+// REST, because of left side of the =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+
+console.log(a, b, others);
+
+// Rest element must be the last element. and only one Rest element
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+console.log(pizza, risotto, otherFood);
+
+//Objects
+const { sat, ...weekdays } = { ...restaurant.openingHours };
+console.log(sat, weekdays);
+
+// 2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(5, 3, 5, 7, 8, 5, 2, 4);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('cheese', 'mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
+*/
+
+/*
+///////////////////////////////////////////////////////////////////////
+//Spread operator (...)
+
+const arr = [7, 8, 9];
+const badNewArray = [1, 2, arr[0], arr[1], arr[2]]; //Bad way of doing it
+console.log(badNewArray);
+
+const newArray = [1, 2, ...arr]; //The good way of doing it.
+console.log(newArray);
+
+console.log(...newArray); // Spreading the array with the "spread" operator
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+//Copy array
+const mainMenyCopy = [...restaurant.mainMenu];
+
+//join 2 arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+//Iterables: arrays, strings, maps, sets. NOT objects
+const str = 'Jonas';
+const letters = [...str, ' ', 'S.'];
+console.log(letters);
+console.log(...str);
+
+//Real world example
+const ingredients = [
+  // prompt("let's make pasta! Ingredient 1?"),
+  // prompt("let's make pasta! Ingredient 2?"),
+  // prompt("let's make pasta! Ingredient 3?"),
+];
+
+console.log(ingredients);
+
+restaurant.orderPasta(...ingredients); //Using the spread operator so you dont have to write EVERYTHING
+
+//Objects
+const newResturant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newResturant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name, restaurant.name);
+*/
+
+/*
 restaurant.orderDelivery({
   time: '22:30',
   address: 'Via del Sole, 21',
@@ -99,6 +274,7 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
+*/
 
 /*
 const arr = [2, 3, 4];
