@@ -4,24 +4,6 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const italianFoods = new Set([
-  'pasta',
-  'gnocchi',
-  'tomatoes',
-  'olive oil',
-  'garlic',
-  'basil',
-]);
-
-const mexicanFoods = new Set([
-  'tortillas',
-  'beans',
-  'rice',
-  'tomatoes',
-  'avocado',
-  'garlic',
-]);
-
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
@@ -69,7 +51,174 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+///////////////////////////////////////////////////////////
+// Maps iteration
 
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct 😁'],
+  [false, 'Try again!'],
+]);
+
+console.log(question);
+
+// Convert object to map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Quiz app
+console.log(question.get('question'));
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+const answer = Number(prompt('Your answer'));
+console.log(answer);
+
+// MY SOLUTION
+// if (answer === 3) {
+//   console.log(question.get(true));
+// } else {
+//   console.log(question.get(false));
+// }
+
+//JONAS Solution
+console.log(question.get(question.get('correct') === answer));
+
+//Convert map to array
+console.log([...question]);
+
+/*
+////////////////////////////////////////////////////////////
+// MAPS
+
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+const time = 8;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+// rest.clear();
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+
+rest.set(document.querySelector('h1'), 'Heading');
+
+console.log(rest);
+console.log(rest.size);
+
+console.log(rest.get(arr));
+*/
+/*
+////////////////////////////////////////////////////////////
+// NEW operations to make sets useful in 2025
+
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+
+// Intersection method
+const commonFoods = italianFoods.intersection(mexicanFoods);
+console.log('Intersection:', commonFoods);
+console.log([...commonFoods]);
+
+// Union method
+
+const italianMexicanFusion = italianFoods.union(mexicanFoods);
+console.log(italianMexicanFusion); // Removes duplicates
+console.log([...italianMexicanFusion]);
+
+console.log([...italianFoods, ...mexicanFoods]); // This will keep duplicates
+console.log(new Set([...italianFoods, ...mexicanFoods])); // This will remove duplicates
+
+//Remove what is common in BOTH sets and give just the first set
+const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
+console.log('Difference Italian:', uniqueItalianFoods);
+
+const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+console.log('Difference Mexican:', uniqueMexicanFoods);
+
+const uniqueItalianAndMexicanFoods =
+  italianFoods.symmetricDifference(mexicanFoods);
+console.log(uniqueItalianAndMexicanFoods);
+
+console.log(italianFoods.isDisjointFrom(mexicanFoods));
+*/
+/*
+////////////////////////////////////////////////////////////
+// SETS
+
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(ordersSet);
+
+console.log(new Set('Jonas'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+//// MAIN use case is to remove duplicate values in an array
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+console.log(new Set('jonasandersen').size);
+*/
+////////////////////////////////////////////////
 // Coding Challenge #2
 
 /* 
@@ -92,7 +241,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 
 GOOD LUCK 😀
 */
-
+/*
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -142,7 +291,7 @@ for (const [goalNum, player] of goalscorers) {
 }
 
 const oddsNew = Object.values(game.odds);
-console.log(oddsNew);
+// console.log(oddsNew);
 
 let avgOdds = 0;
 for (let i = 0; i < oddsNew.length; i++) {
@@ -160,7 +309,7 @@ for (const player of game.scored) {
   console.log(player);
 }
 console.log(scorers);
-
+*/
 /*
 
 //Property names
