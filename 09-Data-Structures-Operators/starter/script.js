@@ -52,6 +52,99 @@ const restaurant = {
   },
 };
 
+const airline = 'TAP Air Portugal';
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+const passenger = 'jOnAs'; // Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+
+console.log(passengerCorrect);
+
+const fixPassengerName = function (name) {
+  const passengerLower = name.toLowerCase();
+  const passengerCorrect =
+    passengerLower[0].toUpperCase() + passengerLower.slice(1);
+  return console.log(passengerCorrect);
+};
+
+// const fixPassengerName = function (name) {
+//   const passengerCorrect =
+//     name.toLowerCase().name[0].toUpperCase() + name.slice(1);
+//   return console.log(passengerCorrect);
+// };
+fixPassengerName('aNderS');
+
+// Comparing Email
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+const normailizedEmail = loginEmail.toLowerCase().trim();
+console.log(normailizedEmail);
+console.log(email === normailizedEmail);
+
+// Replacing
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate')); // New way of targeting everything
+
+console.log(announcement.replace(/door/g, 'gate')); // Old way of targeting all the occurences of 'door'
+
+//Booleans
+const plane = ' A320neo';
+
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+
+/*
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+
+console.log(airline.slice(4));
+// ALWAYS RETURNS A NEW STRING
+console.log(airline.slice(4, 7)); // 7 - 4 is three. So this prints Air
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are midddle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat! 😒');
+  else console.log('You got lucky! 😎');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('jonas'));
+console.log(typeof new String('jonas'));
+
+console.log(typeof new String('jonas').slice(1));
+
+*/
 /*
 
 ///////////////////////////////////////
