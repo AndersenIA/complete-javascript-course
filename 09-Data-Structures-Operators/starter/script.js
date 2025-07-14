@@ -52,6 +52,132 @@ const restaurant = {
   },
 };
 
+/*
+///////////////////////////////////////
+// Coding Challenge #4
+
+
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+document.body.append(document.createElement('textarea'));
+const button = document.createElement('button');
+button.textContent = 'Convert'; // Optional, sets button label
+document.body.append(button);
+
+button.addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+
+  const camelCaseWords = function (a_b, index) {
+    const word = a_b.toLowerCase();
+    const lowerCaseWord = word.toLowerCase();
+    const trimmed = lowerCaseWord.trimStart();
+    const [firstWord, lastWord] = trimmed.split('_');
+    const correctWord = [
+      firstWord,
+      lastWord[0].toUpperCase() + lastWord.slice(1),
+    ].join('');
+    console.log(correctWord.padEnd(25, ' ') + '✅'.repeat(index + 1));
+  };
+
+  for (const [i, row] of rows.entries()) {
+    '✅'.repeat(i + 1);
+    camelCaseWords(row, i);
+  }
+});
+
+// const camelCaseWords = function (a_b) {
+//   const [firstWord, lastWord] = a_b.split('_');
+//   const correctWord = [
+//     firstWord,
+//     lastWord[0].toUpperCase() + lastWord.slice(1),
+//   ].join('');
+//   console.log(correctWord);
+// };
+// camelCaseWords('underscore_case');
+
+/*
+//Split and join
+console.log('a+very+nice+string'.split('+'));
+console.log('Jonas Schmedtmann'.split(' '));
+
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davies');
+capitalizeName('anders ingar andersen');
+capitalizeName('jonas schmedtmann');
+
+// Padding
+const message = 'Go to gate 23';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('Jonas'.padStart(20, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(54631255498453123));
+console.log(maskCreditCard('54631254556468311325498453123'));
+console.log(maskCreditCard(123456789));
+
+// Repeat
+const message2 = 'Bad weather... All departures delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(15);
+*/
+
+/*
+//////////////////////////////////////////////////////////
+// Working with strings part 2
 const airline = 'TAP Air Portugal';
 
 console.log(airline.toLowerCase());
@@ -104,12 +230,31 @@ console.log(announcement.replaceAll('door', 'gate')); // New way of targeting ev
 console.log(announcement.replace(/door/g, 'gate')); // Old way of targeting all the occurences of 'door'
 
 //Booleans
-const plane = ' A320neo';
+const plane = 'Airbus A320neo';
 
 console.log(plane.includes('A320'));
 console.log(plane.includes('Boeing'));
 console.log(plane.startsWith('Air'));
 
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family');
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board!');
+  } else {
+    console.log('Welcome aboard! :)');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection.');
+
+*/
 /*
 
 const airline = 'TAP Air Portugal';
