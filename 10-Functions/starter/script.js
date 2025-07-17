@@ -65,3 +65,58 @@ const newPassport = function (person) {
 newPassport(jonas);
 checkIn(flight, jonas);
 */
+/*
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// HIGHER ORDER FUNCTION
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('JavaScript is the best!', upperFirstWord);
+transformer('JavaScript is the best!', oneWord);
+
+// JS uses callbacks all the time
+const high5 = function () {
+  console.log('🖐');
+};
+document.body.addEventListener('click', high5);
+
+['Jonas', 'Martha', 'Adam'].forEach(high5);
+*/
+
+// Count down example I made myself
+/*
+let countDown = 11;
+let rounds = 1;
+
+const timer = function () {
+  countDown--;
+  if (countDown === 0) {
+    clearInterval(interval);
+    round();
+  } else {
+    console.log(countDown);
+  }
+};
+
+let interval = setInterval(timer, 1000);
+
+const round = function () {
+  rounds++;
+  console.log(`Round: ${rounds}`);
+  countDown = 11;
+
+  interval = setInterval(timer, 1000);
+};
+*/
