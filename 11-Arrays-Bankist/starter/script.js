@@ -369,17 +369,134 @@ TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
 TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
+
+
+// MY SOLUTION
+// const calcAverageHumanAge = ages =>
+//   ages
+//     .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+//     .filter(age => age >= 18)
+//     .reduce((acc, age, _, arr) => acc + age / arr.length, 0);
+
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// JONAS' SOLUTION
+const calcAverageHumanAge = function (ages) {
+  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(humanAges);
+  console.log(adults);
+
+  // const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+
+  const average = adults.reduce(
+    (acc, age, i, arr) => acc + age / arr.length,
+    0
+  );
+
+  return average;
+};
+
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(avg1, avg2);
+
+// 2 3. (2+3)/2 = 2.5. === 2/2+2/3 = 2.5
 */
 
-const data1 = [5, 2, 4, 1, 15, 8, 3];
-const data2 = [16, 6, 10, 5, 6, 1, 4];
-let avgSum = 0;
+/*
+✅ Your Tasks:
+Calculate the recommended food portion for each dog and add it as a new property to each object.
+Formula:
 
-const calcAverageHumanAge = ages =>
-  ages
-    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
-    .filter(age => age >= 18)
-    .reduce((acc, age, _, arr) => acc + age / arr.length, 0);
+recommendedFood = weight ** 0.75 * 28
+(round to the nearest integer)
 
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
-console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+Find the dog owned by "Sarah" and log whether it's eating too much or too little food.
+
+Create two arrays:
+
+ownersEatTooMuch: owners of dogs who eat more than recommended
+
+ownersEatTooLittle: owners of dogs who eat less than recommended
+
+Log a string for each:
+
+"Alice and Bob and Charlie's dogs eat too much!"
+
+"Matilda and John and Sarah's dogs eat too little!"
+
+Bonus: Log true or false if any dog is eating exactly the recommended amount of food.
+
+TEST DATA
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+const recommendedFood = function (dog) {
+  const weight = dog.weight;
+  dog.recommendedFood = weight ** 0.75 * 28;
+};
+
+dogs.forEach(recommendedFood);
+
+const nutrition = function (dog) {
+  const owner = dog.owners.join(' and ');
+  const curFood = dog.curFood;
+  const recFood = dog.recommendedFood;
+
+  if (curFood < recFood) {
+    console.log(`${owner}'s dog doesnt eat enough food`);
+  } else {
+    console.log(`${owner}'s dog eats too much`);
+  }
+};
+
+dogs.forEach(nutrition);
+
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recommendedFood) // filter dogs
+  .flatMap(dog => dog.owners); // collect all owners
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recommendedFood) // filter dogs
+  .flatMap(dog => dog.owners); // collect all owners
+
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+
+const eatRight = dogs.some(dog => dog.curFood === dog.recommendedFood);
+console.log(eatRight); // true or false
+const okayEat = dog =>
+  dog.curFood > dog.recommendedFood * 0.9 &&
+  dog.curFood < dog.recommendedFood * 1.1;
+
+console.log(dogs.some(okayEat)); // true or false
+
+// const recommendedFood = function (dog) {
+//   const owner = dog.owners.join(' and ');
+//   const food = dog.curFood;
+//   const weight = dog.weight;
+//   const recommendedFood = weight ** 0.75 * 28;
+
+//   // if (weight > recommendedFood) {
+//   //   console.log(`${owner}'s dog doesnt eat enough food`);
+//   // } else {
+//   //   console.log(`${owner}'s dog eats too much`);
+//   // }
+//   return recommendedFood;
+// };
+*/
