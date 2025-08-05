@@ -1101,6 +1101,7 @@ const dogs = [
 GOOD LUCK 😀
 */
 
+/*
 const dogs = [
   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
   { weight: 8, curFood: 200, owners: ['Matilda'] },
@@ -1112,14 +1113,14 @@ const dogs = [
 const recFood = weight => weight ** 0.75 * 28;
 
 // 1.
-/*1. Loop over the array containing dog objects, and for each dog, calculate the recommended food portion (recFood) and add it to the object as a new property. Do NOT create a new array, simply loop over the array (We never did this before, so think about how you can do this without creating a new array). */
+/*1. Loop over the array containing dog objects, and for each dog, calculate the recommended food portion (recFood) and add it to the object as a new property. Do NOT create a new array, simply loop over the array (We never did this before, so think about how you can do this without creating a new array). 
 dogs.forEach(dog => (dog.recommendedFood = Math.floor(recFood(dog.weight))));
 
 console.log('---------1--------');
 console.log(dogs);
 
 // 2.
-/*2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple users, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓*/
+/*2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple users, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
 console.log('---------2--------');
 dogs.forEach(dog => {
   if (dog.owners.includes('Sarah')) {
@@ -1131,15 +1132,15 @@ dogs.forEach(dog => {
 });
 
 // 3.
-/*3. Create an array containing all owners of dogs who eat too much (ownersTooMuch) and an array with all owners of dogs who eat too little (ownersTooLittle).*/
+/*3. Create an array containing all owners of dogs who eat too much (ownersTooMuch) and an array with all owners of dogs who eat too little (ownersTooLittle).
 console.log('---------3--------');
 const ownersTooMuch = [];
 const ownersTooLittle = [];
 dogs.forEach(dog => {
   if (dog.curFood > dog.recommendedFood) {
-    ownersTooMuch.push(dog.owners);
+    ownersTooMuch.push(...dog.owners);
   } else {
-    ownersTooLittle.push(dog.owners);
+    ownersTooLittle.push(...dog.owners);
   }
 });
 
@@ -1147,26 +1148,29 @@ console.log(...ownersTooMuch);
 console.log(...ownersTooLittle);
 
 // 4.
-/* Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"*/
-console.log('---------4--------');
+/* Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+console.log('---------4--------')
 console.log(`${ownersTooMuch.flat().join(' and ')}'s dogs eat too much`);
 console.log(
   `${ownersTooLittle.flat().join(' and ')}'s dogs does not eat enough food`
 );
 
 // 5.
-/* 5. Log to the console whether there is ANY dog eating EXACTLY the amount of food that is recommended (just true or false) */
+/* 5. Log to the console whether there is ANY dog eating EXACTLY the amount of food that is recommended (just true or false) 
 console.log('---------5--------');
 
-dogs.forEach(dog => {
-  if (dog.curFood === dog.recommendedFood) {
-    console.log(`${dog.owners}'s dog eats exactly right`);
-  }
-});
+// dogs.forEach(dog => {
+//   if (dog.curFood === dog.recommendedFood) {
+//     console.log(`${dog.owners}'s dog eats exactly right`);
+//   }
+// });
+
+const anyExact = dogs.some(dog => dog.curFood === dog.recommendedFood);
+console.log('Any dog eating exactly the recommended amount?', anyExact);
 
 // 6.
 /*6. Log to the console whether ALL of the dogs are eating an OKAY amount of food (just true or false)
-HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.*/
+HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
 console.log('---------6--------');
 const dogsEatingOkay = [];
 dogs.forEach(dog => {
@@ -1181,3 +1185,37 @@ dogs.forEach(dog => {
 
 console.log('---------7--------');
 console.log(...dogsEatingOkay);
+
+// 8.
+/*8. Group the dogs into the following 3 groups: 'exact', 'too-much' and 'too-little', based on whether they are eating too much, too little or the exact amount of food, based on the recommended food portion.
+console.log('---------8--------');
+
+// const grouping = function ({ recommendedFood }) {
+//   if (dogs.curFood > dogs.recommendedFood) {
+//     return 'too-much';
+//   } else if (dogs.curFood < dogs.recommendedFood) {
+//     return 'too-little';
+//   } else {
+//     return 'exact';
+//   }
+// };
+
+const result = Object.groupBy(dogs, ({ curFood, recommendedFood }) => {
+  if (curFood > recommendedFood) {
+    return 'too-much';
+  } else if (curFood < recommendedFood) {
+    return 'too-little';
+  } else {
+    return 'exact';
+  }
+});
+console.log(result);
+
+// 10.
+/*10. Sort the dogs array by recommended food portion in an ascending order. Make sure to NOT mutate the original array! 
+console.log('---------9--------');
+const sortedDogs = dogs.toSorted(
+  (a, b) => a.recommendedFood - b.recommendedFood
+);
+console.log(sortedDogs);
+*/
